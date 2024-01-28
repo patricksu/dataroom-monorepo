@@ -23,17 +23,43 @@ const DataRoomPage: React.FC<DataRoomPageProps> = (props) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-        <h3 style={{flexGrow: 1 }}>Data Room: {props.dataRoom.name}</h3>
-        <DataRoomActionButtons />
-      </div>
-    {selectedFolder ? (
-      <FolderPage folder={selectedFolder} />
-    ) : ( 
-      <DisplayList displayFiles={props.dataRoom.files} displayFolders={props.dataRoom.folders} onFolderClick={handleFolderListItemClick} />
-    )}
+<div style={{
+  display: 'flex',
+  flexDirection: 'column',
+  fontFamily: 'Arial, sans-serif',
+  padding: '20px',
+  backgroundColor: '#f7f7f7',
+  borderRadius: '8px',
+  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)'
+}}>
+  <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '20px',
+    borderBottom: '1px solid #e1e1e1',
+    paddingBottom: '10px'
+  }}>
+    <h3 style={{
+      flexGrow: 1,
+      margin: 0,
+      fontSize: '1.5rem',
+      color: '#333'
+    }}>
+      Data Room: {props.dataRoom.name}
+    </h3>
+    <DataRoomActionButtons />
   </div>
+  {selectedFolder ? (
+    <FolderPage folder={selectedFolder} />
+  ) : (
+    <DisplayList 
+      displayFiles={props.dataRoom.files} 
+      displayFolders={props.dataRoom.folders} 
+      onFolderClick={handleFolderListItemClick} 
+    />
+  )}
+</div>
+
     );
   };
 

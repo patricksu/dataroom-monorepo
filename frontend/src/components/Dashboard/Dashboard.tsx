@@ -34,36 +34,61 @@ const Dashboard: React.FC = () => {
 
 
   return (
-    <div style={{marginLeft: "8px"}}>
-        {/* Logout button at top right */}
-        <button
-          style={{
-            position: 'absolute',
-            top: '8px',
-            right: '8px',
-            padding: '4px',
-          }}
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      {/* When a data room is selected */}
-      {selectedDataRoom ? (
-        <DataRoomPage dataRoom={selectedDataRoom}/>
-      ) : (
-        <div>
-          {/* When no data room is selected */}
-          <h2>Dashboard</h2>
-          <button onClick={handleNewDataRoomClick}>New Data Room</button>
-          {showCreateDataRoomModal && (
-            <CreateDataRoomModal
-              onClose={() => setShowCreateDataRoomModal(false)} 
-            />
-          )}
-          <DataRoomList dataRooms={dataRooms} onDataRoomClick={handleDataRoomListItemClick}/>
-        </div>
+<div style={{
+  marginLeft: "8px",
+  fontFamily: 'Arial, sans-serif'
+}}>
+  {/* Logout button at top right */}
+  <button
+    style={{
+      position: 'absolute',
+      top: '16px',
+      right: '16px',
+      padding: '8px 16px',
+      backgroundColor: '#f44336',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+    }}
+    onClick={handleLogout}
+  >
+    Logout
+  </button>
+
+  {/* When a data room is selected */}
+  {selectedDataRoom ? (
+    <DataRoomPage dataRoom={selectedDataRoom} />
+  ) : (
+    <div>
+      {/* When no data room is selected */}
+      <h2 style={{ color: '#333', fontSize: '24px', marginBottom: '20px' }}>Dashboard</h2>
+      <button
+        style={{
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          padding: '10px 20px',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          marginBottom: '20px',
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+        }}
+        onClick={handleNewDataRoomClick}
+      >
+        New Data Room
+      </button>
+      {showCreateDataRoomModal && (
+        <CreateDataRoomModal
+          onClose={() => setShowCreateDataRoomModal(false)} 
+        />
       )}
+      <DataRoomList dataRooms={dataRooms} onDataRoomClick={handleDataRoomListItemClick} />
     </div>
+  )}
+</div>
+
   );
 };
 
