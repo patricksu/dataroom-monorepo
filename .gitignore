@@ -52,3 +52,7 @@ tmp/*
 output.dat
 
 backend/uploads
+
+.terraform
+terraform.tfstate
+terraform.tfstate.backup

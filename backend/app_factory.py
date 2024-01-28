@@ -1,4 +1,5 @@
 # app_factory.py
+import logging
 import os
 from flask import Flask, request
 from flask_cors import CORS
@@ -6,11 +7,18 @@ from flask_jwt_extended import JWTManager
 from routes import auth, user, data_room, file, folder
 from database import initialize_database
 
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(level=logging.INFO)
+
 def create_app():
     app = Flask(__name__)
 
     # Set the SQLALchemy database URI from environment variable or use a local SQLite database
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///database/data.db'
+    
+    logger.info(f"THE db URL is: {app.config['SQLALCHEMY_DATABASE_URI']}")
+
     # Disable SQLAlchemy modification tracker due to performance overhead
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # Set the JWT secret key from environment variable or generate a new one
@@ -27,7 +35,7 @@ def create_app():
     jwt = JWTManager(app)
 
     # Initialize CORS
-    CORS(app)
+    CORS(app, supports_credentials=True)
 
     # Set CORS options on preflight requests
     @app.before_request
