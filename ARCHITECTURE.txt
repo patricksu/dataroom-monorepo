@@ -9,12 +9,15 @@ I created an Azure Postgresql DB to replace the original local SQLite DB. 4. All
 
 The DB instance is open to public network. I would have put the DB into a private network, as a better practice. 
 
-I used Terraform as IaC to manage the two App services. Due to time constraint, I did not use IaC to manage the DB. 
+I used Terraform as IaC to manage the two App services, see "main.tf". I did not have enough to manage the DB vis the IaC.
 The backend app service's host name (domain name) is dynamically generated, and is provided to the frontend app service as an 
 environment variable. 
 
 Using the "uploaded" folder in the api server to host files will not work in production, since the api server is stateless. 
 I did a PoC to replace it with Azure blob store but did not have enough time to finish. 
 
+The public URL for the data-room is:
 
+https://data-room-frontend-69580.azurewebsites.net/
 
+We should buy a proper domain instead of using the Azure app service's default domain, if need to productionize the service. 
