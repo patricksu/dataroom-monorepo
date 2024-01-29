@@ -20,5 +20,5 @@ serve_dev:
 
 build_push_prod:
 	docker build -t app-frontend:prod .
-	docker tag app-frontend:prod mightycontainer/app-frontend-prod
-	docker push mightycontainer/app-frontend-prod
+	docker tag app-frontend:prod mightycontainer/app-frontend-prod:01-29-2024-19-46
+	docker push mightycontainer/app-frontend-prod:01-29-2024-19-46
