@@ -1,0 +1,20 @@
+Frontend and backend are both containernized. They are deployed as a separate Azure app service, and can scale separately. 
+Azure app service has many benefits, to name a few:
+    Domain name is handled automatically.
+    TLS certificates are handled automatically.
+    Scaling policy can be easily configured.
+    Azure provides log streams for easy debugging.
+
+I created an Azure Postgresql DB to replace the original local SQLite DB. 4. All the backend instances are connected to this DB.
+
+The DB instance is open to public network. I would have put the DB into a private network, as a better practice. 
+
+I used Terraform as IaC to manage the two App services. Due to time constraint, I did not use IaC to manage the DB. 
+The backend app service's host name (domain name) is dynamically generated, and is provided to the frontend app service as an 
+environment variable. 
+
+Using the "uploaded" folder in the api server to host files will not work in production, since the api server is stateless. 
+I did a PoC to replace it with Azure blob store but did not have enough time to finish. 
+
+
+
